@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../../Layout/Layout_View.dart';
 
 class SplashView extends StatefulWidget {
+
   static const String routeName = '/splash';
   const SplashView({super.key});
 
@@ -24,6 +25,6 @@ class _SplashViewState extends State<SplashView> {
   }
   @override
   Widget build(BuildContext context) {
-    return Image.asset("assets/images/splashbackground.jpeg",fit: BoxFit.cover,);
+    return Image.asset("assets/images/splashbackground.png",fit: BoxFit.cover,);
   }
 }

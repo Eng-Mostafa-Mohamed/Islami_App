@@ -4,6 +4,7 @@ class AppTheme {
   static const Color primarycolor = Color(0xffB7935f);
 
   static ThemeData Lighttheme = ThemeData(
+
     scaffoldBackgroundColor: Colors.transparent,
     appBarTheme: const AppBarTheme(
       backgroundColor: Colors.transparent,
@@ -38,5 +39,31 @@ class AppTheme {
       size: 23,
       ),
     ),
+    dividerTheme: const DividerThemeData (
+      color: primarycolor,
+
+    ),
+    textTheme:  TextTheme(
+      titleLarge:  TextStyle(
+          fontSize: 24,
+          fontWeight: FontWeight.bold,
+          color: Colors.black,
+          fontFamily: "elmessiri"),
+    bodyLarge: TextStyle(
+        fontSize: 25,
+        fontWeight: FontWeight.w500,
+        color: Colors.black,
+        fontFamily: "elmessiri"),
+      bodyMedium: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.w500,
+          color: Colors.black,
+          fontFamily: "elmessiri"),
+      bodySmall: TextStyle(
+          fontSize: 15,
+          fontWeight: FontWeight.w500,
+          color: Colors.black,
+          fontFamily: "elmessiri"),
+    )
   );
 }

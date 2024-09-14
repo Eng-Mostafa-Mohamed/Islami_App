@@ -24,20 +24,22 @@ class _LayoutViewState extends State<LayoutView> {
 
   @override
   Widget build(BuildContext context) {
+    var theme=Theme.of(context);
     return Container(
       decoration: const BoxDecoration(
           image: DecorationImage(
-              image: AssetImage("assets/images/splashbackground.jpeg"),fit: BoxFit.cover)
+              image: AssetImage("assets/images/main_background.png"),fit: BoxFit.cover)
         ,),
 
       child: Scaffold(
         backgroundColor: Colors.transparent,
-
         appBar: AppBar(
+          centerTitle: true,
           backgroundColor: Colors.transparent,
-          title: const Text(
-           "اسلامي",
-          ),
+          title: const  Text(
+             "اسلامي",
+            ),
+
         ),
         body: screens[selectedindex],
         bottomNavigationBar:  BottomNavigationBar(
@@ -49,21 +51,21 @@ class _LayoutViewState extends State<LayoutView> {
             selectedindex=index;
           },
           backgroundColor: AppTheme.primarycolor,
-          items: [
+          items:const [
             BottomNavigationBarItem(
-              icon: ImageIcon(AssetImage("assets/icons/quran.jfif")),
+              icon: ImageIcon(AssetImage("assets/icons/quran.png")),
               label: 'Quran',
             ),
             BottomNavigationBarItem(
-              icon: ImageIcon(AssetImage("assets/icons/hadith.png")),
+              icon: ImageIcon(AssetImage("assets/icons/Group.png")),
               label: 'Hadith',
             ),
             BottomNavigationBarItem(
-              icon: ImageIcon(AssetImage("assets/icons/radio.jfif")),
+              icon: ImageIcon(AssetImage("assets/icons/radio_blue.png")),
               label: 'Radio',
             ),
             BottomNavigationBarItem(
-              icon: ImageIcon(AssetImage("assets/icons/sebha.jpg")),
+              icon: ImageIcon(AssetImage("assets/icons/sebha_blue.png")),
               label: 'Sebha',
             ),
             BottomNavigationBarItem(
@@ -72,6 +74,7 @@ class _LayoutViewState extends State<LayoutView> {
             ),
           ],
         ),
+
       ),
     );
   }
