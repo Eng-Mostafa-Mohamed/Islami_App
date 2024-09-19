@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../core/app-theme.dart';
+import '../../core/settings_provider.dart';
 
 class SebhaView extends StatefulWidget {
   const SebhaView({super.key});
@@ -17,6 +19,7 @@ class _SebhaViewState extends State<SebhaView> {
  List<String> TaspihList=["سبحان الله","الحمد لله","الله اكبر",];
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<SettingsProvider>(context);
     var theme = Theme.of(context);
     return Center(
         child: Column(
@@ -31,7 +34,9 @@ class _SebhaViewState extends State<SebhaView> {
               ),
               child: Transform.rotate(
                 angle: angle,
-                child: Image.asset("assets/icons/body of seb7a.png"),
+                child: Image.asset(
+                  provider.getsebhaheader(),
+                ),
               ),
             ),
             Container(
@@ -39,7 +44,10 @@ class _SebhaViewState extends State<SebhaView> {
               margin: EdgeInsets.only(
                 left: 80,
               ),
-              child: Image.asset("assets/icons/head of seb7a.png"),
+              child: Image.asset(
+                provider.getsebhabody(),
+
+              ),
             ),
           ],
         ),
@@ -55,7 +63,7 @@ class _SebhaViewState extends State<SebhaView> {
           alignment: Alignment.center,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
-            color: AppTheme.primarycolor,
+            color: provider.isDark()? Color(0xff141A2E).withOpacity(0.9):AppTheme.primarycolor,
           ),
           child:  Text(
             "$num_of_clicks"
@@ -71,7 +79,10 @@ class _SebhaViewState extends State<SebhaView> {
           height: 20,
         ),
         FilledButton(style: FilledButton.styleFrom(
-          backgroundColor: AppTheme.primarycolor,
+          backgroundColor: provider.isDark()? AppTheme.primarydarkcolor:AppTheme.primarycolor,
+          textStyle: const TextStyle(
+            fontSize: 22,
+          )
         ),
           onPressed: () {
             Taspih();

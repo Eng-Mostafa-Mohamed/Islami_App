@@ -41,7 +41,6 @@ class _QuranViewState extends State<QuranView> {
   Widget build(BuildContext context) {
     var theme=Theme.of(context);
 
-
     return  Column(
       children: [
         Image.asset(
@@ -86,9 +85,8 @@ class _QuranViewState extends State<QuranView> {
       ],
     );
   }
-
-
 }
+
 class Sura {
   final String name;
   final String number;

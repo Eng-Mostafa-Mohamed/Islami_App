@@ -28,7 +28,7 @@ class HadithView extends StatelessWidget {
                child: Padding(
 
                  padding: const EdgeInsets.all(5.0),
-                 child: Text("حديث رقم ${index+1}",style: theme.textTheme.bodyMedium,textAlign: TextAlign.center,),
+                 child: Text("حديث رقم ${index+1}",style: theme.textTheme.bodyLarge,textAlign: TextAlign.center,),
                ),
              ),itemCount: 30,),))
        ],

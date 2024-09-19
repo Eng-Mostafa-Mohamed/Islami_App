@@ -5,8 +5,11 @@ import 'package:islam/moduls/Quran_view/Quranview.dart';
 import 'package:islam/moduls/Radio_view/Radioview.dart';
 import 'package:islam/moduls/Sebha_view/Sebhaview.dart';
 import 'package:islam/moduls/Settings_view/Settingsview.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 import '../core/app-theme.dart';
+import '../core/settings_provider.dart';
 
 class LayoutView extends StatefulWidget {
   static const String routeName = "Homelayout";
@@ -19,63 +22,71 @@ class LayoutView extends StatefulWidget {
 
 class _LayoutViewState extends State<LayoutView> {
   late int selectedindex=0;
-  List<Widget> screens=[QuranView(),HadithView(),RadioView(),SebhaView(),SettingsView(),
+  List<Widget> screens=[const QuranView(),HadithView(),RadioView(),SebhaView(),SettingsView(),
   ];
 
   @override
   Widget build(BuildContext context) {
-    var theme=Theme.of(context);
+    var lang = AppLocalizations.of(context)!;
+    var provider = Provider.of<SettingsProvider>(context);
+    var theme = Theme.of(context);
     return Container(
-      decoration: const BoxDecoration(
+        decoration:  BoxDecoration(
           image: DecorationImage(
-              image: AssetImage("assets/images/main_background.png"),fit: BoxFit.cover)
-        ,),
+              image: AssetImage(
+                  provider.getHomebackground(),
+              ),
+              fit: BoxFit.cover)
+          ,),
 
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        appBar: AppBar(
-          centerTitle: true,
+        child: Scaffold(
           backgroundColor: Colors.transparent,
-          title: const  Text(
-             "اسلامي",
+          appBar: AppBar(
+            centerTitle: true,
+            backgroundColor: Colors.transparent,
+            title: Text(
+              lang.islami,
             ),
 
-        ),
-        body: screens[selectedindex],
-        bottomNavigationBar:  BottomNavigationBar(
-          currentIndex: selectedindex,
-          onTap: (index){
-            setState(() {
+          ),
+          body: screens[selectedindex],
+          bottomNavigationBar: BottomNavigationBar(
+            currentIndex: selectedindex,
+            onTap: (index) {
+              setState(() {
+                selectedindex = index;
+              });
               selectedindex = index;
-            });
-            selectedindex=index;
-          },
-          backgroundColor: AppTheme.primarycolor,
-          items:const [
-            BottomNavigationBarItem(
-              icon: ImageIcon(AssetImage("assets/icons/quran.png")),
-              label: 'Quran',
-            ),
-            BottomNavigationBarItem(
-              icon: ImageIcon(AssetImage("assets/icons/Group.png")),
-              label: 'Hadith',
-            ),
-            BottomNavigationBarItem(
-              icon: ImageIcon(AssetImage("assets/icons/radio_blue.png")),
-              label: 'Radio',
-            ),
-            BottomNavigationBarItem(
-              icon: ImageIcon(AssetImage("assets/icons/sebha_blue.png")),
-              label: 'Sebha',
-            ),
-            BottomNavigationBarItem(
-              icon: ImageIcon(AssetImage("assets/icons/settings.jpg")),
-              label: 'Settings',
-            ),
-          ],
-        ),
+            },
+            //backgroundColor: AppTheme.primarycolor,
+            //0xff141A2E
+            items: [
+              BottomNavigationBarItem(
+                icon: const ImageIcon(AssetImage("assets/icons/quran.png")),
+                label: lang.quran,
+              ),
+              BottomNavigationBarItem(
+                icon: const ImageIcon(AssetImage("assets/icons/Group.png")),
+                label: lang.hadith,
+              ),
+              BottomNavigationBarItem(
+                icon: const ImageIcon(
+                    AssetImage("assets/icons/radio_blue.png")),
+                label: lang.radio,
+              ),
+              BottomNavigationBarItem(
+                icon: const ImageIcon(
+                    AssetImage("assets/icons/sebha_blue.png")),
+                label: lang.tasbeh,
+              ),
+              BottomNavigationBarItem(
+                icon: const Icon(Icons.settings),
+                label: lang.settings,
+              ),
+            ],
+          ),
 
-      ),
+        ),
     );
   }
 }

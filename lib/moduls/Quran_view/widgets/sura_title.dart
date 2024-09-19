@@ -14,7 +14,7 @@ class SuraTitleWidget extends StatelessWidget {
         Expanded(
           child: Text(
             suradata.number,textAlign: TextAlign.center,
-            style: theme.textTheme.bodyMedium,
+            style: theme.textTheme.bodyLarge,
           ),
         ),
        const  SizedBox(
@@ -23,7 +23,7 @@ class SuraTitleWidget extends StatelessWidget {
         Expanded(
           child: Text(
             suradata.name,textAlign: TextAlign.center,
-            style: theme.textTheme.bodyMedium,
+            style: theme.textTheme.bodyLarge,
           ),
         ),
       ],

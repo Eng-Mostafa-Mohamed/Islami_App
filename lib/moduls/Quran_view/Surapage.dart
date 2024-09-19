@@ -2,6 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islam/moduls/Quran_view/Quranview.dart';
+import 'package:provider/provider.dart';
+
+import '../../core/app-theme.dart';
+import '../../core/settings_provider.dart';
 
 class SuraPage extends StatefulWidget {
   const SuraPage({super.key});
@@ -16,12 +20,15 @@ class _SuraPageState extends State<SuraPage> {
   Widget build(BuildContext context) {
     var theme=Theme.of(context);
     var data=ModalRoute.of(context)?.settings.arguments as Sura ;
+    var provider = Provider.of<SettingsProvider>(context);
     loadayat(data.number);
 
     return  Container(
-      decoration:const BoxDecoration(
+      decoration: BoxDecoration(
        image: DecorationImage(
-         image: AssetImage("assets/images/main_background.png"),
+         image: AssetImage(
+             provider.getHomebackground(),
+         ),
          fit: BoxFit.cover,
        )
       ),
@@ -34,7 +41,7 @@ class _SuraPageState extends State<SuraPage> {
           margin: const EdgeInsets.all(25),
           padding: EdgeInsets.symmetric(vertical: 40,horizontal:35),
           decoration:  BoxDecoration(
-            color: Color(0xfff8f8f8).withOpacity(0.9),
+              color:  provider.isDark()? Color(0xff141A2E).withOpacity(0.9) : Colors.white.withOpacity(0.9),
             borderRadius: BorderRadius.circular(25),
 
             ),
@@ -43,9 +50,13 @@ class _SuraPageState extends State<SuraPage> {
              Row(
                children: [
                  SizedBox(width: 55,),
-                 Text("سورة ${data.name}",style:theme.textTheme.bodyLarge,),
+                 Text("سورة ${data.name}",style:TextStyle(
+                 color:  provider.isDark()? AppTheme.primarydarkcolor : Colors.black,
+                   fontSize: 24,
+                   fontWeight: FontWeight.bold,
+                 )),
                  SizedBox(width: 15,),
-                 Icon(Icons.play_arrow),
+                 Icon(Icons.play_arrow,color: Colors.amber,),
                ],
              ),
              Divider(),
@@ -54,7 +65,7 @@ class _SuraPageState extends State<SuraPage> {
                  padding: const EdgeInsets.all(8.0),
                  child: ListView.builder(itemBuilder: (context, index) => Text(
                  ayatlist[index],style: TextStyle(
-                 color: Colors.black,
+                   color: provider.isDark()? AppTheme.primarydarkcolor : Colors.black,
 
              ),textAlign: TextAlign.center,
              ),itemCount: ayatlist.length,),
