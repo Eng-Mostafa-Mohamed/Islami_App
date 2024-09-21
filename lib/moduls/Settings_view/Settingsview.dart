@@ -20,13 +20,13 @@ class _SettingsViewState extends State<SettingsView> {
 
   @override
   Widget build(BuildContext context) {
-    var provider = Provider.of<SettingsProvider>(context);
 
     var lang = AppLocalizations.of(context)!;
     var theme = Theme.of(context);
+    var provider = Provider.of<SettingsProvider>(context);
 
     var languageslist=["English", "عربي", ];
-    var modelist=[lang.dark, lang.light];
+    var modelist = provider.currentLanguage == "en" ? ["Dark", "Light"] : ["غامق", "مضئ"];
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 60,horizontal: 20),
